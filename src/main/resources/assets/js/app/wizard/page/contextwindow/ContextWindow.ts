@@ -180,7 +180,7 @@ export class ContextWindow extends api.ui.panel.DockedPanel {
             clearTimeout(this.animationTimer);
         }
         this.contextWindowState = ContextWindowState.SLIDING_OUT;
-        this.animationTimer = setTimeout(() => {
+        this.animationTimer = window.setTimeout(() => {
             this.getEl().addClass('hidden');
             this.contextWindowState = ContextWindowState.HIDDEN;
             this.updateFrameSize();
@@ -195,7 +195,7 @@ export class ContextWindow extends api.ui.panel.DockedPanel {
             clearTimeout(this.animationTimer);
         }
         this.contextWindowState = ContextWindowState.SLIDING_IN;
-        this.animationTimer = setTimeout(() => {
+        this.animationTimer = window.setTimeout(() => {
             this.contextWindowState = ContextWindowState.SHOWN;
             this.updateFrameSize();
             this.show(); // to notify listeners that elements are shown

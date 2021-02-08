@@ -1,8 +1,7 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CircularDependencyPlugin = require('circular-dependency-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -31,15 +30,12 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    publicPath: '../', // ..for root and ../.. for page-editor
-                    use: [
-                        {loader: 'css-loader', options: {sourceMap: !isProd, importLoaders: 1}},
-                        {loader: 'postcss-loader', options: {sourceMap: !isProd}},
-                        {loader: 'less-loader', options: {sourceMap: !isProd}}
-                    ]
-                })
+                use: [
+                    {loader: MiniCssExtractPlugin.loader, options: {publicPath: '../'}},
+                    {loader: 'css-loader', options: {sourceMap: !isProd, importLoaders: 1}},
+                    {loader: 'postcss-loader', options: {sourceMap: !isProd}},
+                    {loader: 'less-loader', options: {sourceMap: !isProd}},
+                ]
             },
             {
                 test: /\.(eot|woff|woff2|ttf)$|icomoon.svg/,
@@ -51,30 +47,35 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new ExtractTextPlugin({
-            filename: '[name].css',
-            allChunks: true,
-            disable: false
-        }),
-        new CopyWebpackPlugin([
-            { from: 'icons/fonts/icomoon.*', to: 'page-editor/fonts/[name].[ext]' }
-        ]),
-        new CircularDependencyPlugin({
-            exclude: /a\.js|node_modules/,
-            failOnError: true
-        }),
-        ...(isProd ? [
-            new UglifyJsPlugin({
-                cache: true,
-                parallel: true,
-                uglifyOptions: {
-                    mangle: false,
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    compress: {
+                        drop_console: false
+                    },
                     keep_classnames: true,
                     keep_fnames: true
                 }
             })
-        ] : [])
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: './styles/[id].css'
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {from: 'icons/fonts/icomoon.*', to: 'page-editor/fonts/[name].[ext]'}
+            ]
+        }),
+        new CircularDependencyPlugin({
+            exclude: /a\.js|node_modules/,
+            failOnError: true
+        })
     ],
-    devtool: isProd ? false : 'source-map'
+    devtool: isProd ? false : 'source-map',
+    mode: isProd ? 'production' : 'development',
+    performance: { hints: false }
 };

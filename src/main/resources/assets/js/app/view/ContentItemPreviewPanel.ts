@@ -216,36 +216,30 @@ export class ContentItemPreviewPanel
             }
 
             switch (previewType) {
-            case PREVIEW_TYPE.PAGE:
-            {
-                this.getEl().addClass('page-preview');
-                break;
-            }
-            case PREVIEW_TYPE.IMAGE:
-            {
-                this.getEl().addClass('image-preview');
-                break;
-            }
-            case PREVIEW_TYPE.SVG:
-            {
-                this.getEl().addClass('svg-preview');
-                break;
-            }
-            case PREVIEW_TYPE.EMPTY:
-            {
-                this.showPreviewMessage(i18n('field.preview.notAvailable'));
-                break;
-            }
-            case PREVIEW_TYPE.FAILED:
-            {
-                this.showPreviewMessage(i18n('field.preview.failed'));
-                break;
-            }
-            case PREVIEW_TYPE.BLANK:
-            {
-                this.getEl().addClass('no-preview');
-                break;
-            }
+                case PREVIEW_TYPE.PAGE: {
+                    this.getEl().addClass('page-preview');
+                    break;
+                }
+                case PREVIEW_TYPE.IMAGE: {
+                    this.getEl().addClass('image-preview');
+                    break;
+                }
+                case PREVIEW_TYPE.SVG: {
+                    this.getEl().addClass('svg-preview');
+                    break;
+                }
+                case PREVIEW_TYPE.EMPTY: {
+                    this.showPreviewMessage(i18n('field.preview.notAvailable'));
+                    break;
+                }
+                case PREVIEW_TYPE.FAILED: {
+                    this.showPreviewMessage(i18n('field.preview.failed'));
+                    break;
+                }
+                case PREVIEW_TYPE.BLANK: {
+                    this.getEl().addClass('no-preview');
+                    break;
+                }
             }
         }
 
