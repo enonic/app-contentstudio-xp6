@@ -1,4 +1,4 @@
-Enonic XP - Content Studio App
+Enonic XP 6 - Content Studio App
 ===
 
 [![Travis Build Status][travis-image]][travis-url]
