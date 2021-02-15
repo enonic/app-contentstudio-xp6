@@ -21,7 +21,7 @@ dependencies {
     include "${group}:lib-mustache:${xpVersion}"
     include "${group}:lib-portal:${xpVersion}"
     include "com.enonic.lib:lib-admin-ui:${libAdminUiVersion}"
-    testCompile 'junit:junit:4.13.1'
+    testCompile 'junit:junit:4.13.2'
     testCompile 'org.mockito:mockito-core:3.7.7'
 }
 
