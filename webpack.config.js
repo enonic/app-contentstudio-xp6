@@ -65,11 +65,9 @@ module.exports = {
             filename: '[name].css',
             chunkFilename: './styles/[id].css'
         }),
-        new CopyWebpackPlugin({
-            patterns: [
-                {from: 'icons/fonts/icomoon.*', to: 'page-editor/fonts/[name].[ext]'}
-            ]
-        }),
+        new CopyWebpackPlugin([
+            { from: 'icons/fonts/icomoon.*', to: 'page-editor/fonts/[name].[ext]' }
+        ]),
         new CircularDependencyPlugin({
             exclude: /a\.js|node_modules/,
             failOnError: true
