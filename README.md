@@ -4,7 +4,7 @@ Enonic XP 6 - Content Studio App
 [![Travis Build Status][travis-image]][travis-url]
 [![License][license-image]][license-url]
 
-Create sites and manage content in [Enonic XP](https://github.com/enonic/xp).
+Create sites and manage content in [Enonic XP](https://github.com/enonic/xp)
 
 ## Usage
 
