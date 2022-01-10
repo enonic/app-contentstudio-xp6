@@ -8,7 +8,7 @@
     "fix": "tslint -p tsconfig.build.json -c tslint.json --fix"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.1",
+    "autoprefixer": "^10.4.2",
     "browserslist": "^4.19.1",
     "browserslist-config-enonic": "^1.0.6",
     "circular-dependency-plugin": "^5.2.2",
