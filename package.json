@@ -15,7 +15,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "css-mqpacker": "^7.0.0",
-    "cssnano": "^5.1.13",
+    "cssnano": "^5.1.14",
     "enonic-admin-artifacts": "^1.8.3",
     "file-loader": "^6.2.0",
     "js-yaml": "^4.1.0",
